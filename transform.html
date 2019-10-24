@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task1</title>
+    <script>
+	    function doTransform() {
+		    const input = {
+			    p1: {
+				    s1: {
+					    title: 'scene 1',
+					    description: 'description 1',
+					    value: 1,
+				    },
+				    s2: {
+					    title: 'scene 2',
+					    description: 'description 2',
+					    value: 32,
+				    },
+				    s3: {
+					    title: 'scene 3',
+					    description: 'description 3',
+					    value: 89,
+				    },
+				    s4: {
+					    title: 'scene 3',
+					    description: 'description 3',
+					    value: 0,
+				    },
+			    },
+			    p2: {
+				    s5: {
+					    title: 'scene 5',
+					    description: 'description 5',
+					    value: 0,
+				    },
+				    s6: {
+					    title: 'scene 6',
+					    description: 'description 6',
+					    value: 42,
+				    },
+				    s7: {
+					    title: 'scene 7',
+					    description: 'description 7',
+					    value: -9,
+				    },
+			    },
+		    };
+		    console.log(transform(input));
+	    }
+        function transform(input) {
+	        let result = [];
+	        for (let [projectId, project] of Object.entries(input)){
+	        	for(let [sceneId,scene] of Object.entries(project)){
+	        		let val;
+                    if((val = scene.value) > 0){
+                    	result.push({
+		                    projectId: projectId,
+                            sceneId: sceneId,
+                            value: val
+                        })
+                    }
+                }
+            }
+	        return result.sort((a, b)=>{
+                return b.value-a.value;
+	        });
+        }
+    </script>
+</head>
+<body>
+<h2 id="1">1. Преобразование данных</h2>
+
+<p>Требуется написать функцию, приводящую объект формата</p>
+
+<pre><code>type Input = {
+  [projectId: string]: {
+    [sceneId: string]: {
+      title: string
+      description: string
+      value: number
+    }
+  }
+}
+</code></pre>
+
+<p>в массив типа Output с элементами типа Item</p>
+
+<pre><code>type Item = {
+  projectId: string
+  sceneId: string
+  value: number
+}
+type Output = Item[]
+</code></pre>
+
+<p>Результат должен содержать массив типов Item, в элементах которого значение value > 0</p>
+
+<p>Пример входящего объекта:</p>
+<pre>в коде<code>
+</code></pre>
+
+<p>Результат выполнения функции:</p>
+
+<pre><code>[
+  { projectId: 'p1', sceneId: 's1', value: 1, title: 'scene 1' },
+  { projectId: 'p1', sceneId: 's2', value: 32, title: 'scene 2' },
+  { projectId: 'p1', sceneId: 's3', value: 89, title: 'scene 3' },
+  { projectId: 'p2', sceneId: 's6', value: 42, title: 'scene 6' },
+]
+</code></pre>
+
+<p>Дополнительное задание:
+    Добавить в функцию сортировку результата по полю value, от большего к меньшему.</p>
+
+<h3 id="">Результат</h3>
+
+<p>Результат разместить на codepen, прислать ссылку</p>
+<input type="button" value="transform" onclick="doTransform()">
+</body>
+</html>
