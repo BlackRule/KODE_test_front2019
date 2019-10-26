@@ -1,0 +1,11 @@
+.card {
+  margin: 10px 20px 10px 0;
+  width: 245px;
+  height: 342px;
+}
+
+.card:hover, .hvr-grow:focus, .hvr-grow:active {
+  transform: scale(1.1);
+}
+
+
